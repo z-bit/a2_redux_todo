@@ -26,6 +26,9 @@ export class Count {
     dec(){this.s.dispatch(this.a.countDec());}
     res(){this.s.dispatch(this.a.countRes());}
 
+    ngOnInit(){
+
+    }
     ngOnDestroy(){
         this.unsubscribe();
     }

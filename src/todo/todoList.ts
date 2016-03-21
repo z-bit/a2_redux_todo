@@ -9,7 +9,7 @@ import {VisibleTodosPipe} from "./visibleTodosPipe";
     template: `<div>
         <ul>
             <todo
-                *ngFor="#todo of todos | visibleTodos: currentFilter"
+                *ngFor="#todo of store.getState().todos | visibleTodos: store.getState().filter"
                 [completed]="todo.completed"
                 [id]="todo.id"
             >
@@ -21,10 +21,10 @@ import {VisibleTodosPipe} from "./visibleTodosPipe";
 export class TodoList {
     constructor(
         @Inject('AppStore')
-        public s: AppStore
+        public store: AppStore
     ){
-        this.unsubscribe = this.s.subscribe(() => {
-            let state = this.s.getState();
+        this.unsubscribe = this.store.subscribe(() => {
+            let state = this.store.getState();
             this.currentFilter = state.filter;
             this.todos = state.todos;
         });
